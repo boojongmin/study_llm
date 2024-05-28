@@ -2,9 +2,10 @@ from transformers import BertForMaskedLM, BertTokenizer, AdamW
 import torch
 from torch.utils.data import DataLoader, Dataset
 
-# model = BertForMaskedLM.from_pretrained("model")
 model_name = 'bert-base-uncased'
-model = BertForMaskedLM.from_pretrained(model_name)
+
+model = BertForMaskedLM.from_pretrained("model")
+# model = BertForMaskedLM.from_pretrained(model_name)
 
 # print(model)
 
@@ -76,5 +77,17 @@ def predict_masked_token(model, tokenizer, text):
 
 tokenizer = BertTokenizer.from_pretrained(model_name)
 text = "I am [MASK]."
+predicted_token = predict_masked_token(model, tokenizer, text)
+print(f"The predicted word is: {predicted_token}")
+
+text = "You are [MASK]."
+predicted_token = predict_masked_token(model, tokenizer, text)
+print(f"The predicted word is: {predicted_token}")
+
+text = "We are [MASK]."
+predicted_token = predict_masked_token(model, tokenizer, text)
+print(f"The predicted word is: {predicted_token}")
+
+text = "that is [MASK]."
 predicted_token = predict_masked_token(model, tokenizer, text)
 print(f"The predicted word is: {predicted_token}")
